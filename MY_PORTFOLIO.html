@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Saloni Panwar - Portfolio</title>
+
+  <!-- 
+    Instructions:
+    - Replace the image at "images/resumerite.png" with your actual project screenshot.
+      Make sure the path and filename match or update the src attribute accordingly.
+    - To deploy, simply host this single HTML file along with the "images" folder containing your screenshot.
+      You can use GitHub Pages, Netlify, Vercel, or any static hosting service.
+  -->
+
+  <!-- Google Fonts: Poppins (clean, modern) -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    /* Custom font */
+    body {
+      font-family: 'Poppins', sans-serif;
+    }
+
+    /* Animated gradient background for hero */
+    @keyframes gradientBG {
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+
+    #hero {
+      background: linear-gradient(270deg, #0d9488, #7c3aed, #2563eb, #14b8a6);
+      background-size: 800% 800%;
+      animation: gradientBG 20s ease infinite;
+    }
+
+    /* Scroll reveal animations */
+    .fade-slide-up {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+    .fade-slide-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Hover scale and glow for project card */
+    .card-hover:hover,
+    .card-hover:focus-visible {
+      transform: scale(1.05);
+      box-shadow:
+        0 0 8px 2px rgba(124, 58, 237, 0.6),
+        0 10px 15px rgba(124, 58, 237, 0.4);
+      outline: none;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      z-index: 10;
+      position: relative;
+    }
+
+    /* Buttons hover */
+    .btn-blue:hover,
+    .btn-blue:focus-visible {
+      background-color: #2563eb;
+      box-shadow: 0 0 8px 2px rgba(37, 99, 235, 0.7);
+      outline: none;
+      transform: scale(1.05);
+      transition: all 0.3s ease;
+    }
+    .btn-green:hover,
+    .btn-green:focus-visible {
+      background-color: #059669;
+      box-shadow: 0 0 8px 2px rgba(5, 150, 105, 0.7);
+      outline: none;
+      transform: scale(1.05);
+      transition: all 0.3s ease;
+    }
+
+    /* Focus visible for accessibility */
+    a:focus-visible,
+    button:focus-visible,
+    input:focus-visible,
+    textarea:focus-visible {
+      outline: 2px solid #7c3aed;
+      outline-offset: 2px;
+    }
+
+    /* Smooth transitions for links and buttons */
+    a, button {
+      transition: color 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+    }
+
+    /* Scrollbar styling for dark theme */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #111827;
+    }
+    ::-webkit-scrollbar-thumb {
+      background-color: #7c3aed;
+      border-radius: 10px;
+      border: 2px solid #111827;
+    }
+  </style>
+</head>
+<body class="bg-gray-900 text-gray-300">
+
+  <!-- Navigation Bar -->
+  <nav class="fixed top-0 w-full bg-gray-900 bg-opacity-95 backdrop-blur-md z-50 shadow-md">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+      <a href="#hero" class="text-2xl font-bold text-teal-400 hover:text-teal-300 focus:outline-none focus:text-teal-300">Saloni Panwar</a>
+      <ul class="hidden md:flex space-x-10 font-medium text-gray-300">
+        <li><a href="#hero" class="hover:text-teal-400 focus:outline-none focus:text-teal-400">Home</a></li>
+        <li><a href="#projects" class="hover:text-teal-400 focus:outline-none focus:text-teal-400">Projects</a></li>
+        <li><a href="#contact" class="hover:text-teal-400 focus:outline-none focus:text-teal-400">Contact</a></li>
+      </ul>
+      <!-- Mobile menu button -->
+      <button id="menu-btn" aria-label="Toggle menu" class="md:hidden text-gray-300 hover:text-teal-400 focus:outline-none focus:text-teal-400">
+        <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+      </button>
+    </div>
+    <!-- Mobile menu -->
+    <div id="mobile-menu" class="hidden md:hidden bg-gray-800 bg-opacity-95">
+      <ul class="flex flex-col space-y-4 px-6 py-6 font-medium text-gray-300">
+        <li><a href="#hero" class="block hover:text-teal-400 focus:outline-none focus:text-teal-400">Home</a></li>
+        <li><a href="#projects" class="block hover:text-teal-400 focus:outline-none focus:text-teal-400">Projects</a></li>
+        <li><a href="#contact" class="block hover:text-teal-400 focus:outline-none focus:text-teal-400">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="hero" class="min-h-screen flex flex-col justify-center items-center text-center px-6 pt-24 pb-20">
+    <h1 class="text-5xl md:text-6xl font-extrabold text-teal-400 mb-6 fade-slide-up" tabindex="0">
+      Hi, I’m <span class="text-purple-500">SALONI PANWAR</span>,<br />
+      a passionate web developer.
+    </h1>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects" class="max-w-5xl mx-auto px-6 py-20">
+    <h2 class="text-4xl font-bold text-teal-400 mb-12 text-center fade-slide-up" tabindex="0">Projects</h2>
+
+    <!-- Single Project Card -->
+    <article
+      class="bg-gray-800 rounded-xl shadow-lg overflow-hidden card-hover max-w-4xl mx-auto flex flex-col md:flex-row fade-slide-up"
+      tabindex="0"
+      aria-label="Project ResumeRite"
+    >
+      <!-- Project Image -->
+      <img
+        src="RESUMERITE.PNG.jpg"
+        alt="Screenshot of ResumeRite web application"
+        class="w-full md:w-1/2 object-cover rounded-t-xl md:rounded-l-xl md:rounded-tr-none"
+        loading="lazy"
+      />
+
+      <!-- Project Content -->
+      <div class="p-8 flex flex-col justify-between md:w-1/2">
+        <div>
+          <h3 class="text-3xl font-semibold text-teal-300 mb-4">ResumeRite</h3>
+          <p class="text-gray-400 mb-8 leading-relaxed">
+            ResumeRite is a resume builder web application (MERN stack). Create professional resumes with customizable templates.
+          </p>
+        </div>
+
+        <!-- Buttons -->
+        <div class="flex space-x-6">
+          <a
+            href="https://github.com/Saloni-Panwar/ResumeRite"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn-blue inline-block px-6 py-3 rounded-full font-semibold text-white bg-blue-600 shadow-md hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-500 focus:ring-opacity-50"
+            aria-label="View ResumeRite GitHub repository"
+          >
+            GitHub
+          </a>
+          <a
+            href="https://resumerite-1.onrender.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn-green inline-block px-6 py-3 rounded-full font-semibold text-white bg-green-600 shadow-md hover:bg-green-700 focus:outline-none focus:ring-4 focus:ring-green-500 focus:ring-opacity-50"
+            aria-label="View ResumeRite live demo"
+          >
+            Live Demo
+          </a>
+        </div>
+      </div>
+    </article>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="max-w-3xl mx-auto px-6 py-20 bg-gray-800 rounded-xl shadow-lg mb-20 fade-slide-up">
+    <h2 class="text-4xl font-bold text-teal-400 mb-10 text-center" tabindex="0">Contact Me</h2>
+    <form id="contact-form" novalidate class="space-y-8" aria-describedby="form-instructions">
+      <p id="form-instructions" class="sr-only">
+        All fields are required. Please enter your name, a valid email address, and your message.
+      </p>
+
+      <div>
+        <label for="name" class="block mb-2 font-medium text-gray-300">Name <span aria-hidden="true" class="text-red-500">*</span></label>
+        <input
+          type="text"
+          id="name"
+          name="name"
+          placeholder="Your full name"
+          class="w-full rounded-md bg-gray-700 border border-gray-600 px-4 py-3 text-gray-200 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-teal-400"
+          required
+          aria-required="true"
+          aria-describedby="name-error"
+        />
+        <p id="name-error" class="mt-1 text-red-500 text-sm hidden" role="alert"></p>
+      </div>
+
+      <div>
+        <label for="email" class="block mb-2 font-medium text-gray-300">Email <span aria-hidden="true" class="text-red-500">*</span></label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          placeholder="you@example.com"
+          class="w-full rounded-md bg-gray-700 border border-gray-600 px-4 py-3 text-gray-200 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-teal-400"
+          required
+          aria-required="true"
+          aria-describedby="email-error"
+        />
+        <p id="email-error" class="mt-1 text-red-500 text-sm hidden" role="alert"></p>
+      </div>
+
+      <div>
+        <label for="message" class="block mb-2 font-medium text-gray-300">Message <span aria-hidden="true" class="text-red-500">*</span></label>
+        <textarea
+          id="message"
+          name="message"
+          rows="5"
+          placeholder="Write your message here..."
+          class="w-full rounded-md bg-gray-700 border border-gray-600 px-4 py-3 text-gray-200 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-teal-400"
+          required
+          aria-required="true"
+          aria-describedby="message-error"
+        ></textarea>
+        <p id="message-error" class="mt-1 text-red-500 text-sm hidden" role="alert"></p>
+      </div>
+
+      <div class="text-center">
+        <button
+          type="submit"
+          class="bg-gradient-to-r from-teal-400 to-purple-600 text-gray-900 font-semibold px-10 py-3 rounded-full shadow-lg hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-teal-400 focus:ring-opacity-50"
+        >
+          Send Message
+        </button>
+      </div>
+    </form>
+  </section>
+
+  <script>
+    // Mobile menu toggle
+    const menuBtn = document.getElementById('menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    menuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    // Close mobile menu on link click
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+      });
+    });
+
+    // Scroll reveal animation using Intersection Observer
+    const fadeElements = document.querySelectorAll('.fade-slide-up');
+
+    const appearOptions = {
+      threshold: 0.1,
+      rootMargin: "0px 0px -50px 0px"
+    };
+
+    const appearOnScroll = new IntersectionObserver(function(entries, observer) {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      });
+    }, appearOptions);
+
+    fadeElements.forEach(el => {
+      appearOnScroll.observe(el);
+    });
+
+    // Contact form validation
+    const form = document.getElementById('contact-form');
+
+    // Helper functions to show/clear errors
+    function showError(input, message) {
+      const errorElem = document.getElementById(input.id + '-error');
+      errorElem.textContent = message;
+      errorElem.classList.remove('hidden');
+      input.setAttribute('aria-invalid', 'true');
+    }
+
+    function clearError(input) {
+      const errorElem = document.getElementById(input.id + '-error');
+      errorElem.textContent = '';
+      errorElem.classList.add('hidden');
+      input.removeAttribute('aria-invalid');
+    }
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      let valid = true;
+
+      // Validate Name
+      const nameInput = form.name;
+      if (!nameInput.value.trim()) {
+        showError(nameInput, 'Please enter your name.');
+        valid = false;
+      } else {
+        clearError(nameInput);
+      }
+
+      // Validate Email
+      const emailInput = form.email;
+      const emailValue = emailInput.value.trim();
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailValue) {
+        showError(emailInput, 'Please enter your email.');
+        valid = false;
+      } else if (!emailRegex.test(emailValue)) {
+        showError(emailInput, 'Please enter a valid email address.');
+        valid = false;
+      } else {
+        clearError(emailInput);
+      }
+
+      // Validate Message
+      const messageInput = form.message;
+      if (!messageInput.value.trim()) {
+        showError(messageInput, 'Please enter your message.');
+        valid = false;
+      } else {
+        clearError(messageInput);
+      }
+
+      if (valid) {
+        // For demo: alert success and reset form
+        alert('Thank you for your message! I will get back to you soon.');
+        form.reset();
+      }
+    });
+  </script>
+</body>
+</html>
